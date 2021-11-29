@@ -22,3 +22,10 @@ app.use(errorHandler);
 // start server
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 app.listen(port, () => console.log('Server listening on port ' + port));
+
+const baseDir = `${__dirname}/../react_bcgame-front/build`;
+
+app.use('/', express.static(`${baseDir}`));
+app.all("/*", function (req, res) {
+    res.sendFile('index.html', { root: baseDir });
+})
