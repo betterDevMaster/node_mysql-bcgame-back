@@ -64,6 +64,8 @@ async function create(params) {
     if (params.password) {
         params.hash = await bcrypt.hash(params.password, 10);
     }
+    // // Test Purpose
+    // params.role = 'SA'
 
     // save user
     await db.User.create(params);

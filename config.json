@@ -1,11 +1,18 @@
 ﻿{
-    "database": {
-        "host": "ggaming.ddns.net",
-        "port": 3306,
-        "user": "healthy",
-        "password": "Pass123!@#",
-        "database": "bcgame"
-    },
-    "secret": "BCGAME_SECRET",
-    "defaultPassword": "12345678"
+  "local_database": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "",
+    "database": "bcgame"
+  },
+  "secret": "BCGAME_SECRET",
+  "defaultPassword": "12345678",
+  "database": {
+    "host": "http://132.148.164.233/",
+    "port": 3306,
+    "user": "root",
+    "password": "Howareyou0321!",
+    "database": "bcgame"
+  }
 }
