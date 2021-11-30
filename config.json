@@ -1,9 +1,9 @@
 ﻿{
     "database": {
-        "host": "localhost",
+        "host": "ggaming.ddns.net",
         "port": 3306,
-        "user": "root",
-        "password": "",
+        "user": "healthy",
+        "password": "Pass123!@#",
         "database": "bcgame"
     },
     "secret": "BCGAME_SECRET",
