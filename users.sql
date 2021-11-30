@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `Users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `Users` (
   `id` int(11) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
@@ -43,10 +43,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `Users`
 --
 
-INSERT INTO `users` (`id`, `firstName`, `lastName`, `name`, `email`, `hash`, `profilePicURL`, `social`, `mobile`, `role`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `Users` (`id`, `firstName`, `lastName`, `name`, `email`, `hash`, `profilePicURL`, `social`, `mobile`, `role`, `createdAt`, `updatedAt`) VALUES
 (1, 'Senior', 'DevKing', 'Senior DevKing', 'seniordevking@gmail.com', '$2a$10$DiBo4xMx.tg0VQHOMZWxB.h4LpVGCkDFytlpIyosQ1ISeC5p73Zgm', 'https://lh3.googleusercontent.com/a/AATXAJzyVXyYSQY21_9Na9R3kfPN1u1-o5UinU6PmNjL=s96-c', 1, NULL, 'SA', '2021-11-20 21:14:20', '2021-11-20 21:14:20'),
 (2, 'Robert', 'Johnson', 'RJ988', 'robertjhonson988@gmail.com', '$2a$10$kUtt21n2/lL6JaA5o0p6BONJ/3p3JzSjIhS52rXY0MotNGvDU0ZSG', NULL, 0, NULL, 'ADMIN', '2021-11-19 08:12:03', '2021-11-22 02:46:35'),
 (3, 'somi', 'Hello', 'somi0321', 'somi0321@gmail.com', '$2a$10$hS1shrBK6o2xw8DukOs5d.bzkzZxUYnpvTiQKMGni4eNRg9Y.hpgm', NULL, 0, NULL, 'GUEST', '2021-11-20 21:08:47', '2021-11-20 21:08:47'),
@@ -57,9 +57,9 @@ INSERT INTO `users` (`id`, `firstName`, `lastName`, `name`, `email`, `hash`, `pr
 --
 
 --
--- Indexes for table `users`
+-- Indexes for table `Users`
 --
-ALTER TABLE `users`
+ALTER TABLE `Users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
@@ -68,9 +68,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `Users`
 --
-ALTER TABLE `users`
+ALTER TABLE `Users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 

@@ -24,6 +24,7 @@ const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 
 app.listen(port, () => console.log('Server listening on port ' + port));
 
 const baseDir = `${__dirname}/../react_bcgame-front/build`;
+// const baseDir = `${__dirname}/build`;
 
 app.use('/', express.static(`${baseDir}`));
 app.all("/*", function (req, res) {

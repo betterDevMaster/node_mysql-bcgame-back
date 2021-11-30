@@ -1,18 +1,12 @@
 ﻿{
   "database": {
-    "host": "132.148.164.233",
+    "host": "localhost",
     "port": 3306,
     "user": "root",
+    "password2": "",
     "password": "Howareyou0321!",
     "database": "bcgame"
   },
   "secret": "BCGAME_SECRET",
-  "defaultPassword": "12345678",
-  "local_database": {
-    "host": "localhost",
-    "port": 3306,
-    "user": "root",
-    "password": "",
-    "database": "bcgame"
-  }
+  "defaultPassword": "12345678"
 }
