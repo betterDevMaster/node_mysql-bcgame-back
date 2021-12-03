@@ -1,5 +1,6 @@
 ﻿const config = require("config.json");
 const db = require("_helpers/db");
+const fs = require("fs");
 
 module.exports = {
   create,
@@ -38,23 +39,10 @@ async function saveAll(params) {
   }
   // save user
   await db.Coin.create(params);
-  //   if (params) {
-  //     // truncate coins
-  //     await db.Coin.destroy({
-  //       where: {},
-  //       truncate: true,
-  //     });
-
-  //     // save coins
-  //     await db.Coin.bulkCreate(params);
-
-  //   } else {
-  //     throw "Data not found";
-  //   }
 }
 
-async function update(params) {
-  const coin = await getById(params.id);
+async function update(id, params) {
+  const coin = await getById(id);
   // copy params to user and save
   Object.assign(coin, params);
   await coin.save();
@@ -68,5 +56,9 @@ async function getById(id) {
 
 async function _delete(id) {
   const coin = await getById(id);
+  let urls = coin.dataValues.url.split("/");
+  let dir = urls.slice(-4).join("/");
+  if (fs.existsSync(dir)) fs.unlinkSync(dir);
   await coin.destroy();
+  return getAll();
 }

@@ -12,7 +12,7 @@ router.post("/register", authorize(), registerSchema, register);
 
 router.get("/", authorize(), getAll);
 router.post("/", authorize(), saveAll);
-router.put("/", authorize(), update);
+router.put("/:id", authorize(), update);
 router.get("/:id", authorize(), getById);
 router.delete("/:id", authorize(), _delete);
 
@@ -21,6 +21,7 @@ module.exports = router;
 function registerSchema(req, res, next) {
   const schema = Joi.object({
     name: Joi.string().required(),
+    description: Joi.string().required(),
     oriName: Joi.string().required(),
     type: Joi.string().required(),
     url: Joi.string().required(),
@@ -53,7 +54,7 @@ function saveAll(req, res, next) {
 }
 function update(req, res, next) {
   coinService
-    .update(req.body)
+    .update(req.params.id, req.body)
     .then(() =>
       res.json({ status: true, message: "Coin updated successfully" })
     )
@@ -70,8 +71,8 @@ function getById(req, res, next) {
 function _delete(req, res, next) {
   coinService
     .delete(req.params.id)
-    .then(() =>
-      res.json({ status: true, message: "Coin deleted successfully" })
+    .then((coins) =>
+      res.json({ coins, status: true, message: "Coin deleted successfully" })
     )
     .catch(next);
 }
