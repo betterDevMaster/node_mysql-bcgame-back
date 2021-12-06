@@ -136,5 +136,23 @@ async function getCoins(id) {
   const user = await db.UserDetail.findOne({
     where: { userId: id },
   });
+  const strs = user.dataValues.coinIds.split(",");
+
+  // strs.map(async (m) => {
+  //   if (m === "") return;
+  //   db.UserDetail.belongsTo(db.Coin, { targetKey: "id", foreignKey: "id" });
+  // });
+  db.UserDetail.belongsTo(db.Coin, { targetKey: "id", foreignKey: "id" });
+  const test = await db.UserDetail.findAll({
+    include: [
+      {
+        model: db.Coin,
+        where: {
+          id: 2,
+        },
+      },
+    ],
+  });
+  console.log("user -------", test);
   return user;
 }

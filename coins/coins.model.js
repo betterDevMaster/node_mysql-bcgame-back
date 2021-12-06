@@ -4,6 +4,11 @@ module.exports = model;
 
 function model(sequelize) {
   const attributes = {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     name: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: false },
     oriName: { type: DataTypes.STRING, allowNull: false },
@@ -21,6 +26,7 @@ function model(sequelize) {
       // include hash with this scope
       withHash: { attributes: {} },
     },
+    freezeTableName: true,
   };
 
   return sequelize.define("Coin", attributes, options);
