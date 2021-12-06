@@ -14,7 +14,7 @@ module.exports = {
   update,
   delete: _delete,
   registerCoin,
-  getCoins,
+  getCoinsByUser,
 };
 
 async function authenticate({ email, password }) {
@@ -68,6 +68,7 @@ async function create(params) {
   }
   // save user
   await db.User.create(params);
+  return getAll();
 }
 
 async function update(id, params) {
@@ -75,8 +76,7 @@ async function update(id, params) {
   // copy params to user and save
   Object.assign(user, params);
   await user.save();
-  const result = await user.get();
-  return omitHash(result);
+  return getAll();
 }
 
 async function _delete(id) {
@@ -102,57 +102,33 @@ function omitHash(user) {
 }
 
 async function registerCoin(params) {
-  const user = await db.UserDetail.findOne({
-    where: { userId: params.userId },
-  });
+  const where = { userId: params.userId, coinId: params.coinId };
+  const user = await db.UserCoin.findOne({ where });
   if (user) {
-    const strs = user.dataValues.coinIds.split(",");
-    const filtered = strs.filter((f) => parseInt(f) === params.coinIds);
-    var newCoins;
-    if (filtered.length > 0) {
-      newCoins = strs
-        .reduce(function (acc, curr, index) {
-          if (parseInt(curr) !== params.coinIds) acc.push(curr);
-          return acc;
-        }, [])
-        .join(",");
-    } else {
-      newCoins = user.dataValues.coinIds + params.coinIds + ",";
-    }
-    params.coinIds = newCoins;
-    // update user
-    Object.assign(user, params);
-    await user.save();
-    return await user.get();
+    user.destroy({ where });
   } else {
     // save user
-    params.coinIds = params.coinIds + ",";
-    await db.UserDetail.create(params);
-    return params;
+    await db.UserCoin.create(params);
   }
+  return getCoinsByUser(params.userId);
 }
 
-async function getCoins(id) {
-  const user = await db.UserDetail.findOne({
-    where: { userId: id },
+async function getCoinsByUser(id) {
+  db.UserCoin.belongsTo(db.Coin, {
+    targetKey: "id",
+    foreignKey: "coinId",
   });
-  const strs = user.dataValues.coinIds.split(",");
 
-  // strs.map(async (m) => {
-  //   if (m === "") return;
-  //   db.UserDetail.belongsTo(db.Coin, { targetKey: "id", foreignKey: "id" });
-  // });
-  db.UserDetail.belongsTo(db.Coin, { targetKey: "id", foreignKey: "id" });
-  const test = await db.UserDetail.findAll({
+  const user = await db.UserCoin.findAll({
+    where: { userId: id },
     include: [
       {
         model: db.Coin,
-        where: {
-          id: 2,
-        },
+        attributes: ["name", "description", "oriName", "type", "size", "url"],
+        required: false,
+        right: true,
       },
     ],
   });
-  console.log("user -------", test);
   return user;
 }

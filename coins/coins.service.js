@@ -18,6 +18,7 @@ async function create(params) {
   }
 
   await db.Coin.create(params);
+  return getAll();
 }
 
 async function getAll() {
@@ -46,6 +47,7 @@ async function update(id, params) {
   // copy params to user and save
   Object.assign(coin, params);
   await coin.save();
+  return getAll();
 }
 
 async function getById(id) {

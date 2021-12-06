@@ -29,6 +29,8 @@ function model(sequelize) {
         key: "id",
       },
     },
+    jbPrice: { type: DataTypes.DECIMAL(24, 3), defaultValue: 0 },
+    usdPrice: { type: DataTypes.DECIMAL(24, 3), defaultValue: 0 },
   };
 
   const options = {

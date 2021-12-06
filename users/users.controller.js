@@ -17,7 +17,7 @@ router.get("/:id", authorize(), getById);
 router.put("/:id", authorize(), updateSchema, update);
 router.delete("/:id", authorize(), _delete);
 router.post("/registerUserCoin", authorize(), registerCoin);
-router.get("/coins/:id", authorize(), getCoins);
+router.get("/coins/:id", authorize(), getCoinsByUser);
 
 module.exports = router;
 
@@ -116,8 +116,8 @@ function adminSchema(req, res, next) {
 function register(req, res, next) {
   userService
     .create(req.body)
-    .then(() =>
-      res.json({ status: true, message: "User registered successfully" })
+    .then((users) =>
+      res.json({ users, status: true, message: "User registered successfully" })
     )
     .catch(next);
 }
@@ -143,8 +143,8 @@ function getById(req, res, next) {
 function update(req, res, next) {
   userService
     .update(req.params.id, req.body)
-    .then(() =>
-      res.json({ status: true, message: "User updated successfully" })
+    .then((users) =>
+      res.json({ users, status: true, message: "User updated successfully" })
     )
     .catch(next);
 }
@@ -161,9 +161,9 @@ function _delete(req, res, next) {
 function registerCoin(req, res, next) {
   userService
     .registerCoin(req.body)
-    .then((detail) =>
+    .then((coins) =>
       res.json({
-        detail,
+        coins,
         status: true,
         message: "UserCoin registered successfully",
       })
@@ -171,9 +171,9 @@ function registerCoin(req, res, next) {
     .catch(next);
 }
 
-function getCoins(req, res, next) {
+function getCoinsByUser(req, res, next) {
   userService
-    .getCoins(req.params.id)
+    .getCoinsByUser(req.params.id)
     .then((user) => res.json(user))
     .catch(next);
 }
