@@ -105,7 +105,7 @@ async function registerCoin(params) {
   const where = { userId: params.userId, coinId: params.coinId };
   const user = await db.UserCoin.findOne({ where });
   if (user) {
-    user.destroy({ where });
+    await user.destroy({ where });
   } else {
     // save user
     await db.UserCoin.create(params);
