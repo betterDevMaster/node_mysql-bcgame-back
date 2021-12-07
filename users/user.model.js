@@ -9,6 +9,7 @@ function model(sequelize) {
       primaryKey: true,
       autoIncrement: true,
     },
+    coinId: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 1 },
     firstName: { type: DataTypes.STRING, allowNull: false },
     lastName: { type: DataTypes.STRING, allowNull: false },
     name: { type: DataTypes.STRING, allowNull: false },

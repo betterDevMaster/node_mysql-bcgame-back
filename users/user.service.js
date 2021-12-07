@@ -24,16 +24,32 @@ async function authenticate({ email, password }) {
     throw "Email or Password is incorrect";
 
   // authentication successful
-  const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: "7d" });
+  const token = jwt.sign({ userId: user.id }, config.secret, {
+    expiresIn: "7d",
+  });
   return { ...omitHash(user.get()), token };
 }
 
-async function profile({ email }) {
-  const user = await db.User.scope("withHash").findOne({ where: { email } });
+async function profile(req) {
+  try {
+    let { authorization, Authorization } = req.headers;
+    let auth = (Authorization = authorization);
+    if (auth) {
+      const accessToken = auth.split(" ")[1];
+      const { userId } = jwt.verify(accessToken, config.secret);
+      const user = await db.User.findOne({
+        where: { id: userId },
+      });
 
-  // authentication successful
-  const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: "7d" });
-  return { ...omitHash(user.get()), token };
+      if (!user) {
+        throw "Invalid authorization token";
+      }
+      return { ...omitHash(user.get()) };
+    } else throw "Invalid authorization token";
+  } catch (err) {
+    console.error(err);
+    return [500, { message: "Internal server error" }];
+  }
 }
 
 async function getAll() {
@@ -124,7 +140,15 @@ async function getCoinsByUser(id) {
     include: [
       {
         model: db.Coin,
-        attributes: ["name", "description", "oriName", "type", "size", "url"],
+        attributes: [
+          "name",
+          "content",
+          "description",
+          "oriName",
+          "type",
+          "size",
+          "url",
+        ],
         required: false,
         right: true,
       },

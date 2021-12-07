@@ -7,7 +7,7 @@ const userService = require("./user.service");
 
 // routes
 router.post("/authenticate", authenticateSchema, authenticate);
-router.post("/profile", emailSchema, profie);
+router.get("/profile", authorize(), profie);
 router.post("/register", registerSchema, register);
 router.post("/registerByAdmin", authorize(), adminSchema, register);
 router.post("/forgotPassword", emailSchema, forgotPassword);
@@ -50,6 +50,13 @@ function emailSchema(req, res, next) {
   validateRequest(req, next, schema);
 }
 
+function profileSchema(req, res, next) {
+  const schema = Joi.object({
+    token: Joi.string().required(),
+  });
+  validateRequest(req, next, schema);
+}
+
 function forgotPassword(req, res, next) {
   userService
     .forgotPassword({ email: req.body.email })
@@ -65,7 +72,7 @@ function forgotPassword(req, res, next) {
 
 function profie(req, res, next) {
   userService
-    .profile(req.body)
+    .profile(req)
     .then((user) => res.json(user))
     .catch(next);
 }
