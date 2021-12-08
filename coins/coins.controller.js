@@ -42,7 +42,7 @@ function register(req, res, next) {
 function getAll(req, res, next) {
   coinService
     .getAll()
-    .then((users) => res.json(users))
+    .then((coins) => res.json({ coins }))
     .catch(next);
 }
 function saveAll(req, res, next) {

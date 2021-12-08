@@ -6,7 +6,7 @@ const authorize = require('_middleware/authorize')
 const socialService = require('./social.service');
 
 // routes
-router.post('/register', registerSchema, register);
+router.get('/register', registerSchema, register);
 
 function registerSchema(req, res, next) {
     const schema = Joi.object({

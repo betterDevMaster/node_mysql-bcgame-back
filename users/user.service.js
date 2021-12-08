@@ -15,6 +15,7 @@ module.exports = {
   delete: _delete,
   registerCoin,
   getCoinsByUser,
+  updateDefaultCoin,
 };
 
 async function authenticate({ email, password }) {
@@ -47,8 +48,7 @@ async function profile(req) {
       return { ...omitHash(user.get()) };
     } else throw "Invalid authorization token";
   } catch (err) {
-    console.error(err);
-    return [500, { message: "Internal server error" }];
+    throw "Internal server error" + err;
   }
 }
 
@@ -69,8 +69,6 @@ async function forgotPassword(cond) {
   // copy params to user and save
   Object.assign(user, params);
   await user.save();
-
-  return omitHash(user.get());
 }
 
 async function create(params) {
@@ -155,4 +153,12 @@ async function getCoinsByUser(id) {
     ],
   });
   return user;
+}
+
+async function updateDefaultCoin(id, params) {
+  const user = await getUser(id);
+  // copy params to user and save
+  Object.assign(user, params);
+  const ret = await user.get();
+  return ret;
 }
