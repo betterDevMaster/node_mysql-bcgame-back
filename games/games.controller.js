@@ -17,12 +17,12 @@ module.exports = router;
 
 function registerSchema(req, res, next) {
   const schema = Joi.object({
-    name: Joi.string().alphanum().min(3).max(30).required(),
+    name: Joi.string().min(3).max(30).required(),
     gameType: Joi.number().min(1).required(),
     gameUrl: Joi.string().required(),
-    description: Joi.string().alphanum().required(),
-    icon: Joi.string().alphanum().required(),
-    image: Joi.string().alphanum().required(),
+    description: Joi.string().required(),
+    icon: Joi.string().required(),
+    image: Joi.string().required(),
     supportedPlayType: Joi.number().min(1).required(),
     // favorite: Joi.number().required(),
     // fairness: Joi.number().required(),
