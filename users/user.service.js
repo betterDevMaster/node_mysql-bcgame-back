@@ -81,7 +81,9 @@ async function create(params) {
     params.hash = await bcrypt.hash(params.password, 10);
   }
   // save user
-  await db.User.create(params);
+  const user = await db.User.create(params);
+  const coin = { userId: user.id, coinId: 1 };
+  await db.UserCoin.create(coin);
   return getAll();
 }
 
@@ -117,13 +119,17 @@ function omitHash(user) {
 
 async function registerCoin(params) {
   const where = { userId: params.userId, coinId: params.coinId };
-  const user = await db.UserCoin.findOne({ where });
-  if (user) {
-    await user.destroy({ where });
-  } else {
-    // save user
-    await db.UserCoin.create(params);
-  }
+
+  await db.UserCoin.findOne({ where }).then((user) => {
+    // update
+    if (user) {
+      params.status = user.status === 0 ? 1 : 0;
+      return user.update(params);
+    }
+    // insert
+    return db.UserCoin.create(params);
+  });
+
   return getCoinsByUser(params.userId);
 }
 
@@ -159,6 +165,6 @@ async function updateDefaultCoin(id, params) {
   const user = await getUser(id);
   // copy params to user and save
   Object.assign(user, params);
-  const ret = await user.get();
-  return ret;
+  await user.save();
+  return user;
 }

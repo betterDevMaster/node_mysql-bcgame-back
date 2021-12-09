@@ -31,6 +31,7 @@ function model(sequelize) {
     },
     jbPrice: { type: DataTypes.DECIMAL(24, 3), defaultValue: 0 },
     usdPrice: { type: DataTypes.DECIMAL(24, 3), defaultValue: 0 },
+    status: { type: DataTypes.TINYINT, defaultValue: 1 },
   };
 
   const options = {
