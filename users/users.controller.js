@@ -19,6 +19,7 @@ router.delete("/:id", authorize(), _delete);
 router.post("/registerUserCoin", authorize(), registerCoin);
 router.get("/coins/:id", authorize(), getCoinsByUser);
 router.put("/defaultCoin/:id", authorize(), updateDefaultCoin);
+router.put("/userCoinPrice/:id", authorize(), updateUserCoinPrice);
 
 module.exports = router;
 
@@ -183,7 +184,7 @@ function registerCoin(req, res, next) {
 function getCoinsByUser(req, res, next) {
   userService
     .getCoinsByUser(req.params.id)
-    .then((user) => res.json({user}))
+    .then((user) => res.json({ user }))
     .catch(next);
 }
 
@@ -192,6 +193,17 @@ function updateDefaultCoin(req, res, next) {
     .updateDefaultCoin(req.params.id, req.body)
     .then((user) =>
       res.json({ user, status: true, message: "User updated successfully" })
+    )
+    .catch(next);
+}
+
+function updateUserCoinPrice(req, res, next) {
+  userService
+    .updateUserCoinPrice(req.body)
+    .then((user) =>
+      res.json({
+        user,
+      })
     )
     .catch(next);
 }

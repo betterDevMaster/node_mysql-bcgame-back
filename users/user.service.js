@@ -16,6 +16,7 @@ module.exports = {
   registerCoin,
   getCoinsByUser,
   updateDefaultCoin,
+  updateUserCoinPrice,
 };
 
 async function authenticate({ email, password }) {
@@ -167,4 +168,16 @@ async function updateDefaultCoin(id, params) {
   Object.assign(user, params);
   await user.save();
   return user;
+}
+
+async function updateUserCoinPrice(params) {
+  const where = { userId: params.userId, coinId: params.coinId };
+  await db.UserCoin.findOne({ where }).then((userCoin) => {
+    // update
+    if (userCoin) {
+      const jbPrice = parseFloat(userCoin.jbPrice) + params.price;
+      return userCoin.update({ jbPrice });
+    }
+  });
+  return getCoinsByUser(params.userId);
 }

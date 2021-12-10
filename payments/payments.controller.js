@@ -31,7 +31,11 @@ function addDeposit(req, res, next) {
   paymentService
     .addDeposit(req.body)
     .then((payments) =>
-      res.json({ payments, status: true, message: "Payment registered successfully" })
+      res.json({
+        payments,
+        status: true,
+        message: "Payment registered successfully",
+      })
     )
     .catch(next);
 }

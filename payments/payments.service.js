@@ -16,7 +16,6 @@ async function addDeposit(params) {
 
   await db.Payment.findOne({ where }).then((payment) => {
     // update
-    console.log("add ----", payment.price, params.price);
     if (payment) {
       params.price = parseFloat(payment.price) + params.price;
       return payment.update(params);
