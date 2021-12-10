@@ -17,6 +17,7 @@ module.exports = {
   getCoinsByUser,
   updateDefaultCoin,
   updateUserCoinPrice,
+  getUserDepositCoin,
 };
 
 async function authenticate({ email, password }) {
@@ -180,4 +181,9 @@ async function updateUserCoinPrice(params) {
     }
   });
   return getCoinsByUser(params.userId);
+}
+
+async function getUserDepositCoin() {
+  console.log('getUserDepositCoin ==========')
+  return await db.DepositCoin.findAll();
 }

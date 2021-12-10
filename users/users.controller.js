@@ -207,3 +207,11 @@ function updateUserCoinPrice(req, res, next) {
     )
     .catch(next);
 }
+
+function getUserDepositCoin(req, res, next) {
+  console.log('getDeposition ------------')
+  userService
+    .getUserDepositCoin()
+    .then((depositCoins) => res.json({ depositCoins }))
+    .catch(next);
+}

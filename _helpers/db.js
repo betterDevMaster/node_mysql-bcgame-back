@@ -29,9 +29,10 @@ async function initialize() {
 
   // init models and add them to the exported db object
   db.User = require("../users/user.model")(sequelize);
+  db.UserCoin = require("../users/coin.model")(sequelize);
+  db.Deposit = require("../deposits/deposits.model")(sequelize);
   db.Game = require("../games/games.model")(sequelize);
   db.Coin = require("../coins/coins.model")(sequelize);
-  db.UserCoin = require("../users/coin.model")(sequelize);
   db.Payment = require("../payments/payments.model")(sequelize);
 
   // sync all models with database

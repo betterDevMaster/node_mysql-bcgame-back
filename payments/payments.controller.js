@@ -30,9 +30,8 @@ function depositSchema(req, res, next) {
 function addDeposit(req, res, next) {
   paymentService
     .addDeposit(req.body)
-    .then((payments) =>
+    .then(() =>
       res.json({
-        payments,
         status: true,
         message: "Payment registered successfully",
       })

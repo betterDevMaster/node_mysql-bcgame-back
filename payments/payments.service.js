@@ -14,16 +14,15 @@ module.exports = {
 async function addDeposit(params) {
   const where = { userId: params.userId, coinId: params.coinId };
 
-  await db.Payment.findOne({ where }).then((payment) => {
-    // update
-    if (payment) {
-      params.price = parseFloat(payment.price) + params.price;
-      return payment.update(params);
-    }
-    // insert
-    return db.Payment.create(params);
-  });
-  return getAll();
+  if (await db.Payment.findOne({ where })) await db.Payment.create(params);
+  else
+    throw (
+      'Payment UserId "' +
+      params.userId +
+      '" and CoinId "' +
+      params.coinId +
+      '" is missing.'
+    );
 }
 
 async function getAll() {
