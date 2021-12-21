@@ -11,6 +11,7 @@ const upload = require("../_middleware/upload");
 router.post("/register", authorize(), registerSchema, register);
 
 router.get("/", authorize(), getAll);
+router.get("/switchCoins", authorize(), getAllSwitchCoins);
 router.post("/", authorize(), saveAll);
 router.put("/:id", authorize(), update);
 router.get("/:id", authorize(), getById);
@@ -43,6 +44,12 @@ function getAll(req, res, next) {
   coinService
     .getAll()
     .then((coins) => res.json({ coins }))
+    .catch(next);
+}
+function getAllSwitchCoins(req, res, next) {
+  coinService
+    .getAllSwitchCoins()
+    .then((switchList) => res.json({ switchList }))
     .catch(next);
 }
 function saveAll(req, res, next) {

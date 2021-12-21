@@ -10,11 +10,8 @@ function model(sequelize) {
       autoIncrement: true,
     },
     name: { type: DataTypes.STRING, allowNull: false },
-    content: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.TEXT("long"), allowNull: true },
-    oriName: { type: DataTypes.STRING, allowNull: false },
-    type: { type: DataTypes.STRING, allowNull: false },
-    size: { type: DataTypes.INTEGER, allowNull: false },
+    jbPrice: { type: DataTypes.DECIMAL(24, 3), defaultValue: 0 },
+    usdPrice: { type: DataTypes.DECIMAL(24, 3), defaultValue: 0 },
     url: { type: DataTypes.STRING, allowNull: false },
   };
 
@@ -30,5 +27,5 @@ function model(sequelize) {
     freezeTableName: true,
   };
 
-  return sequelize.define("Coin", attributes, options);
+  return sequelize.define("SwitchCoin", attributes, options);
 }

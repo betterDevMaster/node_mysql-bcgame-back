@@ -5,6 +5,7 @@ const fs = require("fs");
 module.exports = {
   create,
   getAll,
+  getAllSwitchCoins,
   getById,
   saveAll,
   update,
@@ -23,6 +24,10 @@ async function create(params) {
 
 async function getAll() {
   return await db.Coin.findAll();
+}
+
+async function getAllSwitchCoins() {
+  return await db.SwitchCoin.findAll();
 }
 
 async function saveAll(params) {

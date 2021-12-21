@@ -17,7 +17,7 @@ function model(sequelize) {
       comment: "0: OriginalGame, 1: Slots, 2: Casinos",
     },
     gameUrl: { type: DataTypes.STRING, allowNull: true },
-    description: { type: DataTypes.STRING, allowNull: true },
+    description: { type: DataTypes.TEXT("long"), allowNull: true },
     icon: { type: DataTypes.TEXT("long"), allowNull: true },
     image: { type: DataTypes.TEXT("long"), allowNull: true },
     supportedPlayType: {

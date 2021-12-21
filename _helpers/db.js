@@ -33,6 +33,7 @@ async function initialize() {
   db.Deposit = require("../deposits/deposits.model")(sequelize);
   db.Game = require("../games/games.model")(sequelize);
   db.Coin = require("../coins/coins.model")(sequelize);
+  db.SwitchCoin = require("../coins/switch.coins.model")(sequelize);
   db.Payment = require("../payments/payments.model")(sequelize);
 
   // sync all models with database
