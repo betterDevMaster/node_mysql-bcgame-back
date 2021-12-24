@@ -135,7 +135,7 @@ function register(req, res, next) {
 function getAll(req, res, next) {
   userService
     .getAll()
-    .then((users) => res.json(users))
+    .then((users) => res.json({ users }))
     .catch(next);
 }
 
