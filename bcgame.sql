@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2021 at 03:44 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.31
+-- Generation Time: Dec 24, 2021 at 05:47 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `Coin` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
   `oriName` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `size` int(11) NOT NULL,
@@ -61,7 +61,9 @@ INSERT INTO `Coin` (`id`, `name`, `content`, `description`, `oriName`, `type`, `
 (14, 'BSV', 'Bitcoin SV', NULL, 'BSV.black.png', 'image/png', 22427, 'http://localhost:4000/resources/uploads/coins/coins-BSV.black.png', '2021-12-06 17:14:47', '2021-12-06 17:14:47'),
 (15, 'BTC', 'Bitcoin', NULL, 'BTC.black.png', 'image/png', 1603, 'http://localhost:4000/resources/uploads/coins/coins-BTC.black.png', '2021-12-06 17:15:17', '2021-12-06 17:15:17'),
 (16, 'BTT', 'BitTorrent', NULL, 'BTT.black.png', 'image/png', 6536, 'http://localhost:4000/resources/uploads/coins/coins-BTT.black.png', '2021-12-07 17:46:44', '2021-12-07 17:46:44'),
-(17, 'BUSD', 'Binance USD', NULL, 'BUSD.black.png', 'image/png', 3845, 'http://localhost:4000/resources/uploads/coins/coins-BUSD.black.png', '2021-12-07 19:21:13', '2021-12-07 19:21:13');
+(17, 'BUSD', 'Binance USD', NULL, 'BUSD.black.png', 'image/png', 3845, 'http://localhost:4000/resources/uploads/coins/coins-BUSD.black.png', '2021-12-07 19:21:13', '2021-12-07 19:21:13'),
+(22, 'ETH', 'Ethereum', 'IMPORTANT: Send only ETH to this deposit address. Sending any other currency to this address may result in the loss of your deposit.\r\n\r\nNOTICE: Coins will be deposited automatically after 6 network confirmations. After making a deposit, you can track its progress on the deposit record.\r\n\r\nIMPORTANT: We do not support smart contract addresses for deposits (Contact us if you do that)', 'ETH.black.png', 'image/png', 1660, 'http://localhost:4000/resources/uploads/coins/coins-ETH.black.png', '2021-12-21 09:34:48', '2021-12-21 09:34:48'),
+(23, 'DOGE', 'Doge Coin', 'IMPORTANT: Send only DOGE to this deposit address. Sending any other currency to this address may result in the loss of your deposit.\r\n\r\nNOTICE: Coins will be deposited automatically after 2 network confirmations. After making a deposit, you can track its progress on the deposit record.', 'DOGE.black.png', 'image/png', 1096, 'http://localhost:4000/resources/uploads/coins/coins-DOGE.black.png', '2021-12-21 09:35:12', '2021-12-21 09:35:12');
 
 -- --------------------------------------------------------
 
@@ -340,7 +342,7 @@ CREATE TABLE `Game` (
   `name` varchar(255) NOT NULL,
   `gameType` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0: OriginalGame, 1: Slots, 2: Casinos',
   `gameUrl` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
   `icon` longtext DEFAULT NULL,
   `image` longtext DEFAULT NULL,
   `supportedPlayType` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0: DemoPlay, 1: Mobile',
@@ -429,6 +431,31 @@ INSERT INTO `Payment` (`id`, `userId`, `depositBonusId`, `coinId`, `coinName`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `SwitchCoin`
+--
+
+CREATE TABLE `SwitchCoin` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `jbPrice` decimal(24,3) DEFAULT 0.000,
+  `usdPrice` decimal(24,3) DEFAULT 0.000,
+  `url` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `SwitchCoin`
+--
+
+INSERT INTO `SwitchCoin` (`id`, `name`, `jbPrice`, `usdPrice`, `url`, `createdAt`, `updatedAt`) VALUES
+(1, 'BTC', '0.000', '0.000', 'http://localhost:4000/resources/uploads/coins/coins-BTC.black.png', '2021-12-13 04:36:50', '2021-12-13 04:36:50'),
+(2, 'DOGE', '0.000', '0.000', 'http://localhost:4000/resources/uploads/coins/coins-DOGE.black.png', '2021-12-14 04:35:44', '2021-12-15 04:35:44'),
+(3, 'ETH', '0.000', '0.000', 'http://localhost:4000/resources/uploads/coins/coins-ETH.black.png', '2021-12-14 04:35:44', '2021-12-15 04:35:44');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `User`
 --
 
@@ -454,7 +481,7 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`id`, `depositCoinId`, `topCoinId`, `firstName`, `lastName`, `name`, `email`, `hash`, `profilePicURL`, `social`, `mobile`, `role`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 1, 'Senior', 'DevKing', 'Senior DevKing', 'seniordevking@gmail.com', '$2a$10$DiBo4xMx.tg0VQHOMZWxB.h4LpVGCkDFytlpIyosQ1ISeC5p73Zgm', 'https://lh3.googleusercontent.com/a/AATXAJzyVXyYSQY21_9Na9R3kfPN1u1-o5UinU6PmNjL=s96-c', 1, NULL, 'SA', '2021-11-20 21:14:20', '2021-11-20 21:14:20'),
+(1, 4, 1, 'Senior', 'DevKing', 'Senior DevKing', 'seniordevking@gmail.com', '$2a$10$DiBo4xMx.tg0VQHOMZWxB.h4LpVGCkDFytlpIyosQ1ISeC5p73Zgm', 'https://lh3.googleusercontent.com/a/AATXAJzyVXyYSQY21_9Na9R3kfPN1u1-o5UinU6PmNjL=s96-c', 1, NULL, 'SA', '2021-11-20 21:14:20', '2021-12-22 08:18:16'),
 (2, 5, 4, 'Robert', 'Johnson', 'RJ988', 'robertjhonson988@gmail.com', '$2a$10$kUtt21n2/lL6JaA5o0p6BONJ/3p3JzSjIhS52rXY0MotNGvDU0ZSG', 'http://localhost:4000/resources/uploads/users/users-10.jpg', 0, NULL, 'ADMIN', '2021-11-19 08:12:03', '2021-12-10 03:38:32'),
 (3, 1, 1, 'somi', 'Hello', 'somi0321', 'somi0321@gmail.com', '$2a$10$hS1shrBK6o2xw8DukOs5d.bzkzZxUYnpvTiQKMGni4eNRg9Y.hpgm', NULL, 0, NULL, 'GUEST', '2021-11-20 21:08:47', '2021-11-20 21:08:47'),
 (4, 1, 1, 'King', 'App', 'King App', 'seniordev119@gmail.com', '$2a$10$u59hp4FA5WNrSGTnoAM48Oc4.GcpKlSXCr/4yypmOEf1kbwQW6q7e', 'https://lh3.googleusercontent.com/a/AATXAJx3fT9YwL0z0g8KskbUqMQZRFMIdPVNBkdRtfQj=s96-c', 1, NULL, 'GUEST', '2021-11-19 08:09:04', '2021-11-19 08:09:04'),
@@ -492,7 +519,10 @@ INSERT INTO `UserCoin` (`id`, `userId`, `coinId`, `jbPrice`, `usdPrice`, `status
 (7, 4, 1, '100.000', '100.000', 1, '2021-12-09 00:37:04', '2021-12-09 00:37:04'),
 (8, 13, 1, '100.000', '100.000', 1, '2021-12-09 00:37:41', '2021-12-09 00:37:41'),
 (9, 16, 1, '100.000', '100.000', 1, '2021-12-09 00:37:54', '2021-12-09 00:37:54'),
-(10, 2, 5, '22.220', '0.000', 1, '2021-12-10 03:01:48', '2021-12-10 07:24:33');
+(10, 2, 5, '22.220', '0.000', 1, '2021-12-10 03:01:48', '2021-12-10 07:24:33'),
+(11, 1, 2, '0.000', '0.000', 1, '2021-12-21 08:50:22', '2021-12-21 08:50:22'),
+(12, 1, 3, '0.000', '0.000', 1, '2021-12-21 08:50:23', '2021-12-21 08:50:23'),
+(13, 1, 4, '0.000', '0.000', 1, '2021-12-21 08:50:23', '2021-12-21 08:50:23');
 
 --
 -- Indexes for dumped tables
@@ -523,6 +553,12 @@ ALTER TABLE `Payment`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `SwitchCoin`
+--
+ALTER TABLE `SwitchCoin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `User`
 --
 ALTER TABLE `User`
@@ -545,7 +581,7 @@ ALTER TABLE `UserCoin`
 -- AUTO_INCREMENT for table `Coin`
 --
 ALTER TABLE `Coin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `DepositCoin`
@@ -566,6 +602,12 @@ ALTER TABLE `Payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `SwitchCoin`
+--
+ALTER TABLE `SwitchCoin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `User`
 --
 ALTER TABLE `User`
@@ -575,7 +617,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT for table `UserCoin`
 --
 ALTER TABLE `UserCoin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
