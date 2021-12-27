@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2021 at 05:47 PM
+-- Generation Time: Dec 21, 2021 at 11:50 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -481,7 +481,7 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`id`, `depositCoinId`, `topCoinId`, `firstName`, `lastName`, `name`, `email`, `hash`, `profilePicURL`, `social`, `mobile`, `role`, `createdAt`, `updatedAt`) VALUES
-(1, 4, 1, 'Senior', 'DevKing', 'Senior DevKing', 'seniordevking@gmail.com', '$2a$10$DiBo4xMx.tg0VQHOMZWxB.h4LpVGCkDFytlpIyosQ1ISeC5p73Zgm', 'https://lh3.googleusercontent.com/a/AATXAJzyVXyYSQY21_9Na9R3kfPN1u1-o5UinU6PmNjL=s96-c', 1, NULL, 'SA', '2021-11-20 21:14:20', '2021-12-22 08:18:16'),
+(1, 2, 1, 'Senior', 'DevKing', 'Senior DevKing', 'seniordevking@gmail.com', '$2a$10$DiBo4xMx.tg0VQHOMZWxB.h4LpVGCkDFytlpIyosQ1ISeC5p73Zgm', 'https://lh3.googleusercontent.com/a/AATXAJzyVXyYSQY21_9Na9R3kfPN1u1-o5UinU6PmNjL=s96-c', 1, NULL, 'SA', '2021-11-20 21:14:20', '2021-12-21 08:50:26'),
 (2, 5, 4, 'Robert', 'Johnson', 'RJ988', 'robertjhonson988@gmail.com', '$2a$10$kUtt21n2/lL6JaA5o0p6BONJ/3p3JzSjIhS52rXY0MotNGvDU0ZSG', 'http://localhost:4000/resources/uploads/users/users-10.jpg', 0, NULL, 'ADMIN', '2021-11-19 08:12:03', '2021-12-10 03:38:32'),
 (3, 1, 1, 'somi', 'Hello', 'somi0321', 'somi0321@gmail.com', '$2a$10$hS1shrBK6o2xw8DukOs5d.bzkzZxUYnpvTiQKMGni4eNRg9Y.hpgm', NULL, 0, NULL, 'GUEST', '2021-11-20 21:08:47', '2021-11-20 21:08:47'),
 (4, 1, 1, 'King', 'App', 'King App', 'seniordev119@gmail.com', '$2a$10$u59hp4FA5WNrSGTnoAM48Oc4.GcpKlSXCr/4yypmOEf1kbwQW6q7e', 'https://lh3.googleusercontent.com/a/AATXAJx3fT9YwL0z0g8KskbUqMQZRFMIdPVNBkdRtfQj=s96-c', 1, NULL, 'GUEST', '2021-11-19 08:09:04', '2021-11-19 08:09:04'),
