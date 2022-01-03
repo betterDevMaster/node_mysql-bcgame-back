@@ -20,6 +20,7 @@ app.use("/coins", require("./coins/coins.controller"));
 app.use("/upload", require("./upload/upload.controller"));
 app.use("/payments", require("./payments/payments.controller"));
 app.use("/deposits", require("./deposits/deposits.controller"));
+app.use("/center", require("./center/game.center.controller"));
 
 // global error handler
 app.use(errorHandler);

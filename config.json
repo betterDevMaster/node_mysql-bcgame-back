@@ -3,8 +3,8 @@
     "host": "localhost",
     "port": 3306,
     "user": "root",
-    "password1": "",
-    "password": "Howareyou0321!",
+    "password": "",
+    "password1": "Howareyou0321!",
     "database": "bcgame"
   },
   "secret": "BCGAME_SECRET",
