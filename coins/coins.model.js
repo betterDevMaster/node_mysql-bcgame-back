@@ -9,13 +9,15 @@ function model(sequelize) {
       primaryKey: true,
       autoIncrement: true,
     },
+    slug: { type: DataTypes.STRING, allowNull: false },
     name: { type: DataTypes.STRING, allowNull: false },
-    content: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.TEXT("long"), allowNull: true },
-    oriName: { type: DataTypes.STRING, allowNull: false },
-    type: { type: DataTypes.STRING, allowNull: false },
-    size: { type: DataTypes.INTEGER, allowNull: false },
-    url: { type: DataTypes.STRING, allowNull: false },
+    symbol: { type: DataTypes.STRING, allowNull: false },
+    selected: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
+      defaultValue: 0,
+      comment: "0: unselected, 1: selected",
+    },
   };
 
   const options = {

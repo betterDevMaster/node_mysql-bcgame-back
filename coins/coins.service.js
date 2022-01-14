@@ -13,13 +13,20 @@ module.exports = {
 };
 
 async function create(params) {
-  // validate
-  if (await db.Coin.findOne({ where: { name: params.name } })) {
-    throw 'Coin Name "' + params.name + '" is already taken';
-  }
+  // initialize
+  await db.Coin.update({ selected: 0 }, {
+    where: {
+      selected: 1
+    }
+  });
 
-  await db.Coin.create(params);
-  return getAll();
+  // update with name
+  await db.Coin.update({ selected: 1 }, {
+    where: {
+      name: params
+    }
+  });
+  return getAll()
 }
 
 async function getAll() {
@@ -35,9 +42,8 @@ async function saveAll(params) {
   if (
     await db.Coin.findOne({
       where: {
+        symbol: params.symbol,
         name: params.name,
-        coinType: params.coinType,
-        coinUrl: params.coinUrl,
       },
     })
   ) {

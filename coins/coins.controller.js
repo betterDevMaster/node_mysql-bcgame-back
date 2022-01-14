@@ -8,7 +8,7 @@ const upload = require("../_middleware/upload");
 
 // routes
 // router.post("/register", authorize(), registerSchema, register);
-router.post("/register", authorize(), registerSchema, register);
+router.post("/register", authorize(), register);
 
 router.get("/", authorize(), getAll);
 router.get("/switchCoins", authorize(), getAllSwitchCoins);
@@ -19,24 +19,11 @@ router.delete("/:id", authorize(), _delete);
 
 module.exports = router;
 
-function registerSchema(req, res, next) {
-  const schema = Joi.object({
-    name: Joi.string().required(),
-    content: Joi.string().required(),
-    description: Joi.string(),
-    oriName: Joi.string().required(),
-    type: Joi.string().required(),
-    url: Joi.string().required(),
-    size: Joi.number().required(),
-  });
-  validateRequest(req, next, schema);
-}
-
 function register(req, res, next) {
   coinService
     .create(req.body)
-    .then(() =>
-      res.json({ status: true, message: "Coin registered successfully" })
+    .then((coins) =>
+      res.json({ coins, status: true, message: "Coin registered and Wallet created successfully" })
     )
     .catch(next);
 }
