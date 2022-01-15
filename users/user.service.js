@@ -147,13 +147,10 @@ async function getCoinsByUser(id) {
       {
         model: db.Coin,
         attributes: [
+          "symbol",
           "name",
-          "content",
-          "description",
-          "oriName",
-          "type",
-          "size",
-          "url",
+          "slug",
+          "selected",
         ],
         required: false,
         right: true,
