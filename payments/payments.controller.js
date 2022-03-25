@@ -32,6 +32,7 @@ const eventServer = new HttpProvider("https://api.trongrid.io");
 
 function getBalance(req, res) {
   var minutes = 5, the_interval = minutes * 60 * 1000;
+  console.log('')
   setInterval(function () {
     web3js.eth.getBalance(myWallet).then(function (wei) {
       const ethBalance = web3js.utils.fromWei(wei, 'ether');
