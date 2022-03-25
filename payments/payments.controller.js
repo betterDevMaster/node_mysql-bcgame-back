@@ -80,7 +80,12 @@ function withdraw(req, res) {
       // });
     }
 
-    etherTransaction()
+    etherTransaction().then(() => {
+      console.log("ok");
+    })
+      .catch((err) => {
+        console.log("error:", err);
+      });
 
     // var minutes = 1, the_interval = minutes * 60 * 1000;
     // // setInterval(function () {
@@ -119,13 +124,13 @@ function withdraw(req, res) {
     // })
   } else if (req.body.coinName == "Tether") {
 
-    const privateKey = "3481E79956D4BD95F358AC96D151C976392FC4E3FC132F78A847906DE588C145";
+    const privateKey = "0629607d83a3b0d5901a5ff2afd146e5d76c54522ef2fe624d0b2fbab754afa5";
     const tronWeb = new TronWeb(fullNode, solidityNode, eventServer, privateKey);
 
     tronWeb.setHeader({ "TRON-PRO-API-KEY": '5c392f93-9454-401e-a376-ec67b8f0a1e2' });
 
     const CONTRACT = "TUjDdXuKYnQVpikEjX1iUDzWJzTED5rici";
-    const ACCOUNT = "TLdHRn5Y4fxMtG34WsT83pwZSnE8YrPEY6";
+    const TO_ACCOUNT = "TLdHRn5Y4fxMtG34WsT83pwZSnE8YrPEY6";
 
     tronWeb.trx.getBalance('TUjDdXuKYnQVpikEjX1iUDzWJzTED5rici').then(result => console.log("TRX Balance: ", result))
     // tronWeb.trx.getContract("TUjDdXuKYnQVpikEjX1iUDzWJzTED5rici").then(result => console.log("Get Contract Address: ", result))
@@ -141,24 +146,41 @@ function withdraw(req, res) {
       } catch (error) {
         console.error("Get USDT Balance Error: ", error)
       }
+
       // USDT Transaction
-      try {
-        let contract = await tronWeb.contract().at(trc20ContractAddress);
-        await contract.transferFrom(
-          "TUjDdXuKYnQVpikEjX1iUDzWJzTED5rici", //address _from
-          "TLdHRn5Y4fxMtG34WsT83pwZSnE8YrPEY6", //address _to
-          100000 //amount
-        ).send({
-          feeLimit: 10000000
-        }).then(output => { console.log('- USDT Transaction Output:', output, '\n'); });
-      } catch (error) {
-        console.error("USDT Transaction Error: ", error)
-      }
+      const { abi } = await tronWeb.trx.getContract(trc20ContractAddress);
+      // console.log(JSON.stringify(abi));
+      const contract = tronWeb.contract(abi.entrys, trc20ContractAddress);
+      const resp = await contract.methods.transfer(TO_ACCOUNT, 100000).send();
+      console.log("transfer:", resp);
+
       // TRX Transaction
-      // tronWeb.trx.sendTransaction("TLdHRn5Y4fxMtG34WsT83pwZSnE8YrPEY6", 1000, address).then(result => console.log("TRX Transaction: ", result));
+      // var privateKey = "0629607d83a3b0d5901a5ff2afd146e5d76c54522ef2fe624d0b2fbab754afa5"
+      // var fromAddress = "TUjDdXuKYnQVpikEjX1iUDzWJzTED5rici"; //address _from
+      // var toAddress = "TLdHRn5Y4fxMtG34WsT83pwZSnE8YrPEY6"; //address _to
+      // var amount = 100000; //amount
+      // //Creates an unsigned TRX transfer transaction
+      // tradeobj = await tronWeb.transactionBuilder.sendTrx(
+      //   toAddress,
+      //   amount,
+      //   fromAddress
+      // );
+      // const signedtxn = await tronWeb.trx.sign(
+      //   tradeobj,
+      //   privateKey
+      // );
+      // const receipt = await tronWeb.trx.sendRawTransaction(
+      //   signedtxn
+      // );
+      // console.log('- Output:', receipt, '\n');
     }
 
-    triggerSmartContract()
+    triggerSmartContract().then(() => {
+      console.log("ok");
+    })
+      .catch((err) => {
+        console.log("error:", err);
+      });
 
   } else if (req.body.coinName == "Bitcoin") {
     // const recieverAddress = "bc1qtky0jng0m465pvqpnmxn8g3d44tggevrgvmftv";
@@ -170,6 +192,10 @@ function withdraw(req, res) {
     //   );
     //   console.log("balance", parseFloat(balance.data / 100000000))
     // }
+
+    // bitcoin:bc1q0veh47cz9ppc8npz37fg5df5glpzkyajjhjz27
+    // trx:TUjDdXuKYnQVpikEjX1iUDzWJzTED5rici
+    // eth: 0xc66909A27Db6905974a11cd117e807805Af88297
 
     // getCurBalance()
 
@@ -189,7 +215,12 @@ function withdraw(req, res) {
       // .on("confirmation", console.log);
     }
 
-    bitcoinTransaction()
+    bitcoinTransaction().then(() => {
+      console.log("ok");
+    })
+      .catch((err) => {
+        console.log("error:", err);
+      });
   }
 }
 
