@@ -16,11 +16,11 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`bcgame` /*!40100 DEFAULT CHARACTER SET 
 
 USE `bcgame`;
 
-/*Table structure for table `coin` */
+/*Table structure for table Coin */
 
-DROP TABLE IF EXISTS `coin`;
+DROP TABLE IF EXISTS Coin;
 
-CREATE TABLE `coin` (
+CREATE TABLE Coin (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -31,9 +31,9 @@ CREATE TABLE `coin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9455 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `coin` */
+/*Data for the table Coin */
 
-insert  into `coin`(`id`,`slug`,`name`,`symbol`,`selected`,`createdAt`,`updatedAt`) values 
+insert  into Coin(`id`,`slug`,`name`,`symbol`,`selected`,`createdAt`,`updatedAt`) values 
 (1,'bitcoin','Bitcoin','BTC',1,'0000-00-00 00:00:00','2022-01-15 02:23:42'),
 (2,'ethereum','Ethereum','ETH',1,'0000-00-00 00:00:00','2022-01-15 02:23:42'),
 (3,'binance-coin','Binance Coin','BNB',1,'0000-00-00 00:00:00','2022-01-15 02:23:42'),
@@ -7740,7 +7740,7 @@ insert  into `coin`(`id`,`slug`,`name`,`symbol`,`selected`,`createdAt`,`updatedA
 (7704,'flash','Flash','FLASH',0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
 (7705,'peepcoin','PeepCoin','PCN',0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
 (7706,'msd','MSD','MSD',0,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-insert  into `coin`(`id`,`slug`,`name`,`symbol`,`selected`,`createdAt`,`updatedAt`) values 
+insert  into Coin(`id`,`slug`,`name`,`symbol`,`selected`,`createdAt`,`updatedAt`) values 
 (7707,'spankchain','SpankChain','SPANK',0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
 (7708,'wandx','WandX','WAND',0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
 (7709,'sense','Sense','SENSE',0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
@@ -9490,11 +9490,11 @@ insert  into `coin`(`id`,`slug`,`name`,`symbol`,`selected`,`createdAt`,`updatedA
 (9453,'ticoex-token','TICOEX Token','TICO',0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
 (9454,'rupaya','Rupaya','RUPX',0,'0000-00-00 00:00:00','0000-00-00 00:00:00');
 
-/*Table structure for table `depositcoin` */
+/*Table structure for table DepositCoin */
 
-DROP TABLE IF EXISTS `depositcoin`;
+DROP TABLE IF EXISTS DepositCoin;
 
-CREATE TABLE `depositcoin` (
+CREATE TABLE DepositCoin (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `content` varchar(255) DEFAULT NULL,
@@ -9503,9 +9503,9 @@ CREATE TABLE `depositcoin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `depositcoin` */
+/*Data for the table DepositCoin */
 
-insert  into `depositcoin`(`id`,`name`,`content`,`createdAt`,`updatedAt`) values 
+insert  into DepositCoin(`id`,`name`,`content`,`createdAt`,`updatedAt`) values 
 (1,'1INCH','1INCH','2021-12-10 09:53:09','2021-12-10 09:53:09'),
 (2,'AAVE','Aave Token','2021-12-10 09:53:09','2021-12-10 09:53:09'),
 (3,'ABYSS','ABYSS','2021-12-10 09:53:09','2021-12-10 09:53:09'),
@@ -9753,11 +9753,11 @@ insert  into `depositcoin`(`id`,`name`,`content`,`createdAt`,`updatedAt`) values
 (245,'ZIL','Zilliqa','2021-12-10 09:53:09','2021-12-10 09:53:09'),
 (246,'ZRX','ZRX','2021-12-10 09:53:09','2021-12-10 09:53:09');
 
-/*Table structure for table `game` */
+/*Table structure for table Game */
 
-DROP TABLE IF EXISTS `game`;
+DROP TABLE IF EXISTS Game;
 
-CREATE TABLE `game` (
+CREATE TABLE Game (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `gameType` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0: OriginalGame, 1: Slots, 2: Casinos',
@@ -9776,9 +9776,9 @@ CREATE TABLE `game` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `game` */
+/*Data for the table Game */
 
-insert  into `game`(`id`,`name`,`gameType`,`gameUrl`,`description`,`icon`,`image`,`supportedPlayType`,`favorite`,`fairness`,`playType`,`droppable`,`parent`,`createdAt`,`updatedAt`) values 
+insert  into Game(`id`,`name`,`gameType`,`gameUrl`,`description`,`icon`,`image`,`supportedPlayType`,`favorite`,`fairness`,`playType`,`droppable`,`parent`,`createdAt`,`updatedAt`) values 
 (1,'Original',0,'/original','Original','data:image/png;base64,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',NULL,0,0,0,0,1,0,'2021-11-22 20:34:19','2021-11-22 20:34:19'),
 (2,'Slot',0,'/slot','Slot','data:image/png;base64,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',NULL,0,0,0,0,1,0,'2021-11-22 20:34:19','2021-11-22 20:34:19'),
 (3,'Casino',0,'/casino','Casino','data:image/png;base64,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',NULL,0,0,0,0,1,0,'2021-11-22 20:34:19','2021-11-22 20:34:19'),
@@ -9817,11 +9817,11 @@ insert  into `game`(`id`,`name`,`gameType`,`gameUrl`,`description`,`icon`,`image
 (36,'VIP BlackJack With Surrender',2,'/casino/vip-black-jack-with-surrender','','','resources/uploads/nav/nav-casino-11.png',0,0,0,0,0,3,'2021-11-23 05:44:16','2021-12-03 18:06:49'),
 (37,'Andar Bahar',2,'/casino/andar-bahar','','','resources/uploads/nav/nav-casino-12.png',0,0,0,0,0,3,'2021-11-23 05:44:48','2021-12-03 18:06:54');
 
-/*Table structure for table `gamecurrentcoin` */
+/*Table structure for table GameCurrentCoin */
 
-DROP TABLE IF EXISTS `gamecurrentcoin`;
+DROP TABLE IF EXISTS GameCurrentCoin;
 
-CREATE TABLE `gamecurrentcoin` (
+CREATE TABLE GameCurrentCoin (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `gameType` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0: OriginalGame, 1: Slots, 2: Casinos',
@@ -9833,17 +9833,17 @@ CREATE TABLE `gamecurrentcoin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `gamecurrentcoin` */
+/*Data for the table GameCurrentCoin */
 
-insert  into `gamecurrentcoin`(`id`,`name`,`gameType`,`gameId`,`userId`,`amount`,`createdAt`,`updatedAt`) values 
+insert  into GameCurrentCoin(`id`,`name`,`gameType`,`gameId`,`userId`,`amount`,`createdAt`,`updatedAt`) values 
 (1,'Wild Diamonds',1,1,1,100.011,'2022-01-03 03:03:54','2022-01-03 03:03:54'),
 (2,'Wild Diamonds',1,1,2,100.022,'2022-01-03 03:03:54','2022-01-03 03:03:54');
 
-/*Table structure for table `payment` */
+/*Table structure for table Payment */
 
-DROP TABLE IF EXISTS `payment`;
+DROP TABLE IF EXISTS Payment;
 
-CREATE TABLE `payment` (
+CREATE TABLE Payment (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `depositBonusId` tinyint(4) NOT NULL DEFAULT 0,
@@ -9856,9 +9856,9 @@ CREATE TABLE `payment` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `payment` */
+/*Data for the table Payment */
 
-insert  into `payment`(`id`,`userId`,`depositBonusId`,`coinId`,`coinName`,`requestId`,`price`,`createdAt`,`updatedAt`) values 
+insert  into Payment(`id`,`userId`,`depositBonusId`,`coinId`,`coinName`,`requestId`,`price`,`createdAt`,`updatedAt`) values 
 (1,2,0,4,'AMP','naiLqZ8H3Gqmh5DDBt1I',79.998,'2021-12-09 07:53:04','2021-12-09 08:30:42'),
 (2,2,0,2,'AAVE','tuiHZPn680FLRbnw5gXY',91.663,'2021-12-09 08:31:13','2021-12-10 02:48:01'),
 (3,2,0,3,'ADA','SGxdu2ogvVKs1t1aMGvq',224.991,'2021-12-10 02:49:24','2021-12-10 03:35:21'),
@@ -9866,11 +9866,11 @@ insert  into `payment`(`id`,`userId`,`depositBonusId`,`coinId`,`coinName`,`reque
 (5,2,0,5,'AMPL','0TBuIP1LAkw5PAWspUgQ',4.444,'2021-12-10 07:23:40','2021-12-10 07:23:40'),
 (6,2,1,5,'AMPL','i7cUC7Y805QT37E9eHdA',4.444,'2021-12-10 07:24:33','2021-12-10 07:24:33');
 
-/*Table structure for table `switchcoin` */
+/*Table structure for table SwitchCoin */
 
-DROP TABLE IF EXISTS `switchcoin`;
+DROP TABLE IF EXISTS SwitchCoin;
 
-CREATE TABLE `switchcoin` (
+CREATE TABLE SwitchCoin (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `jbPrice` decimal(24,3) DEFAULT 0.000,
@@ -9881,18 +9881,18 @@ CREATE TABLE `switchcoin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `switchcoin` */
+/*Data for the table SwitchCoin */
 
-insert  into `switchcoin`(`id`,`name`,`jbPrice`,`usdPrice`,`url`,`createdAt`,`updatedAt`) values 
+insert  into SwitchCoin(`id`,`name`,`jbPrice`,`usdPrice`,`url`,`createdAt`,`updatedAt`) values 
 (1,'BTC',0.000,0.000,'resources/uploads/coins/coins-BTC.black.png','2021-12-13 04:36:50','2021-12-13 04:36:50'),
 (2,'DOGE',0.000,0.000,'resources/uploads/coins/coins-DOGE.black.png','2021-12-14 04:35:44','2021-12-15 04:35:44'),
 (3,'ETH',0.000,0.000,'resources/uploads/coins/coins-ETH.black.png','2021-12-14 04:35:44','2021-12-15 04:35:44');
 
-/*Table structure for table `user` */
+/*Table structure for table User */
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS User;
 
-CREATE TABLE `user` (
+CREATE TABLE User (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `depositCoinId` tinyint(4) NOT NULL DEFAULT 1,
   `topCoinId` tinyint(4) NOT NULL DEFAULT 1,
@@ -9914,9 +9914,9 @@ CREATE TABLE `user` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `user` */
+/*Data for the table User */
 
-insert  into `user`(`id`,`depositCoinId`,`topCoinId`,`firstName`,`lastName`,`name`,`email`,`hash`,`profilePicURL`,`social`,`mobile`,`role`,`bitcoinAddr`,`ethereumAddr`,`tronAddr`,`createdAt`,`updatedAt`) values 
+insert  into User(`id`,`depositCoinId`,`topCoinId`,`firstName`,`lastName`,`name`,`email`,`hash`,`profilePicURL`,`social`,`mobile`,`role`,`bitcoinAddr`,`ethereumAddr`,`tronAddr`,`createdAt`,`updatedAt`) values 
 (1,2,1,'Senior','DevKing','Senior DevKing','seniordevking@gmail.com','$2a$10$DiBo4xMx.tg0VQHOMZWxB.h4LpVGCkDFytlpIyosQ1ISeC5p73Zgm','https://lh3.googleusercontent.com/a/AATXAJzyVXyYSQY21_9Na9R3kfPN1u1-o5UinU6PmNjL=s96-c',1,NULL,'SA',NULL,NULL,NULL,'2021-11-20 21:14:20','2021-12-21 08:50:26'),
 (2,5,4,'Robert','Johnson','RJ988','robertjhonson988@gmail.com','$2a$10$kUtt21n2/lL6JaA5o0p6BONJ/3p3JzSjIhS52rXY0MotNGvDU0ZSG','resources/uploads/users/users-10.jpg',0,NULL,'ADMIN',NULL,NULL,NULL,'2021-11-19 08:12:03','2021-12-10 03:38:32'),
 (3,1,1,'somi','Hello','somi0321','somi0321@gmail.com','$2a$10$hS1shrBK6o2xw8DukOs5d.bzkzZxUYnpvTiQKMGni4eNRg9Y.hpgm',NULL,0,NULL,'GUEST',NULL,NULL,NULL,'2021-11-20 21:08:47','2021-11-20 21:08:47'),
@@ -9927,11 +9927,11 @@ insert  into `user`(`id`,`depositCoinId`,`topCoinId`,`firstName`,`lastName`,`nam
 (37,1,1,'Mark','Savka','Mark Savka','marksoftdev44@gmail.com','$2a$10$j0kekHHr8yfsGRPHwatg3edOwaZV/fN1IHPrybY26BGpawiUn2/vm',NULL,0,NULL,'GUEST','{\"publicKey\":\"12GVYNkf8UwnA9awp1V5x1TaBQNyLsWAmF\",\"privateKey\":\"4644ee2f5e21dc1e784f04de0f478ae58530e6b55f25f8c3eee799ba44ce74df\"}','{\"publicKey\":\"0xd8471b48020E62099E9998325E03E1A0Ff9B9D2B\",\"privateKey\":\"0x5f94ce1ffed6dcb7700bddd0c7589887b52b5d3c0b9c33d5931264748fb0ad52\",\"balance\":\"0\"}','{\"publicKey\":\"THyr4AKZejecLm83FEFx2qyPUVB7jwW2u8\",\"privateKey\":\"F0A28E7ABEA82E2EBA06C587764C0B8FAB6470D6456A7422CF44D5474CE94468\"}','2022-02-07 18:59:49','2022-02-07 18:59:49'),
 (38,1,1,'Dennis','Zhang','Dennis Zhang','drontzasp@gmail.com','$2a$10$DD7qs1NHqOlMdQlul20To.lawHjJk8x3BobSQqlmdcZj6Y1hs47Hu',NULL,0,NULL,'GUEST','{\"publicKey\":\"13PnSiDad6GKh69hYNJsVqD2ZqjR7cQC3b\",\"privateKey\":\"8233610d65482b268d729a0a890be8e54e723a29bce293830aec9ca3423d1aa1\"}','{\"publicKey\":\"0x6221Ed5A6BbdC4dA9Db8aEBF9eD106F79a496225\",\"privateKey\":\"0x28cc49bbcdc641ef803d0441171f24005e776c3f90848c44d4ed6e9bd7efc257\",\"balance\":\"0\"}','{\"publicKey\":\"TKLeTeHQhd5aJuCJ96UBcF8NLnVkysPW4F\",\"privateKey\":\"C9D8F8A4436AD8C46F48326A64BCA03E0609A7652DCFE970311DB66E1C0F9356\"}','2022-02-10 08:08:07','2022-02-10 08:08:07');
 
-/*Table structure for table `usercoin` */
+/*Table structure for table UserCoin */
 
-DROP TABLE IF EXISTS `usercoin`;
+DROP TABLE IF EXISTS UserCoin;
 
-CREATE TABLE `usercoin` (
+CREATE TABLE UserCoin (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) DEFAULT NULL,
   `coinId` int(11) DEFAULT NULL,
@@ -9943,13 +9943,13 @@ CREATE TABLE `usercoin` (
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   KEY `coinId` (`coinId`),
-  CONSTRAINT `usercoin_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
-  CONSTRAINT `usercoin_ibfk_2` FOREIGN KEY (`coinId`) REFERENCES `coin` (`id`)
+  CONSTRAINT `usercoin_ibfk_1` FOREIGN KEY (`userId`) REFERENCES User (`id`),
+  CONSTRAINT `usercoin_ibfk_2` FOREIGN KEY (`coinId`) REFERENCES Coin (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `usercoin` */
+/*Data for the table UserCoin */
 
-insert  into `usercoin`(`id`,`userId`,`coinId`,`jbPrice`,`usdPrice`,`status`,`createdAt`,`updatedAt`) values 
+insert  into UserCoin(`id`,`userId`,`coinId`,`jbPrice`,`usdPrice`,`status`,`createdAt`,`updatedAt`) values 
 (1,2,1,200.000,100.000,1,'2021-12-09 00:34:11','2022-02-05 08:18:30'),
 (2,2,2,116.666,100.000,1,'2021-12-09 03:36:03','2021-12-10 02:48:01'),
 (3,2,3,324.991,100.000,1,'2021-12-09 03:36:18','2021-12-10 03:35:21'),
