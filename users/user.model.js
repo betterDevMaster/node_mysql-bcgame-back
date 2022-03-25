@@ -20,6 +20,11 @@ function model(sequelize) {
     social: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0 },
     mobile: { type: DataTypes.STRING, allowNull: true },
     role: { type: DataTypes.STRING, allowNull: false, defaultValue: "GUEST" },
+    // publicKey: { type: DataTypes.STRING, allowNull: false },
+    // privateKey: { type: DataTypes.STRING, allowNull: false },
+    ethereumAddr: { type: DataTypes.STRING, allowNull: true },
+    tronAddr: { type: DataTypes.STRING, allowNull: true },
+    bitcoinAddr: { type: DataTypes.STRING, allowNull: true },
   };
 
   const options = {
